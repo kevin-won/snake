@@ -1,6 +1,6 @@
 import pygame
 import random
-from models import Snake
+from models import *
 from consts import *
 
 pygame.init()
@@ -19,8 +19,8 @@ fps = pygame.time.Clock()
 tick = 30
 
 snake = Snake()
-
-food = pygame.Rect(random.randint(0,590), random.randint(0,590), 10, 10)
+apple = Apple()
+score = Score()
 
 running = True
 while running:
@@ -42,13 +42,15 @@ while running:
     for pos in snake.getSnakeBody():
         pygame.draw.rect(screen,blue,[pos[0],pos[1],10,10])
 
-    if snake.eatsFood(food):
-        running = fff
-        food_pos = [random.randint(0,590), random.randint(0,590)]
-        tick += 2
 
-    pygame.draw.rect(screen,red,[food.getX(),food.y,100,100])
+    if snake.eatsApple(apple):
+        score.increment()
+        apple.newApple()
+        snake.elongate()
+        tick += 8
+
+    pygame.draw.rect(screen, red, apple.getRect())
 
     pygame.display.update()
 
-    fps.tick(tick)
+    fps.tick(30)
