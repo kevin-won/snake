@@ -9,7 +9,7 @@ class Snake(object):
     def __init__(self):
         self._snake_body = [[70, 50], [80, 50], [90, 50], [100, 50]]
         self._start_pos = [100,50]
-        self._x_delta = 0
+        self._x_delta = 10
         self._y_delta = 0
         self._direction = RIGHT
         self._head = self._snake_body[len(self._snake_body) - 1]
@@ -54,7 +54,21 @@ class Snake(object):
         new_pos[0] = self._snake_body[last_index][0] + self._x_delta
         new_pos[1] = self._snake_body[last_index][1] + self._y_delta
         self._snake_body.append(new_pos)
+        print(self._snake_body)
         self._head = self._snake_body[len(self._snake_body) - 1]
+
+    def hitItself(self):
+        for coordinate in self._snake_body[:-1]:
+            if self._head[0] == coordinate[0] and self._head[1] == coordinate[1]:
+                return True
+        return False
+
+    def notInBounds(self):
+        if self._head[0] < 0 or self._head[0]  + 10 > SCREEN_WIDTH:
+            return True
+        elif self._head[1] < 0 or self._head[1] + 10 > SCREEN_HEIGHT:
+            return True
+        return False
 
 class Apple(object):
     """
@@ -78,7 +92,10 @@ class Score(object):
     A class representing the score of the game.
     """
     def __init__(self):
-        self.score = 0
+        self._score = 0
 
     def increment(self):
-        self.score += 1
+        self._score += 1
+
+    def getScore(self):
+        return self._score
