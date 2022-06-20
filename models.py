@@ -75,8 +75,8 @@ class Apple(object):
     A class representing an apple for the snake to eat.
     """
     def __init__(self):
-        self._x = random.randint(0,400)
-        self._y = random.randint(0,400)
+        self._x = random.randint(0,SCREEN_WIDTH - 10)
+        self._y = random.randint(0,SCREEN_HEIGHT - 10)
         self._rect = pygame.Rect((self._x, self._y), (10, 10))
 
     def getRect(self):

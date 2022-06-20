@@ -14,7 +14,7 @@ green = pygame.Color(0, 255, 0)
 blue = pygame.Color(0, 0, 255)
 
 fps = pygame.time.Clock()
-tick = 30
+tick = 20
 
 snake = Snake()
 apple = Apple()
@@ -58,7 +58,7 @@ while running:
         score.increment()
         apple.newApple()
         snake.elongate()
-        tick += 4
+        tick += 2
 
     pygame.draw.rect(screen, red, apple.getRect())
 
