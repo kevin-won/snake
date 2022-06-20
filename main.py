@@ -14,7 +14,7 @@ green = pygame.Color(0, 255, 0)
 blue = pygame.Color(0, 0, 255)
 
 fps = pygame.time.Clock()
-tick = 20
+tick = 10
 
 snake = Snake()
 apple = Apple()
@@ -49,10 +49,8 @@ while running:
     screen.fill(white)
 
     snake.updateSnake()
-
     for pos in snake.getSnakeBody():
         pygame.draw.rect(screen,blue,[pos[0],pos[1],10,10])
-
 
     if snake.eatsApple(apple):
         score.increment()
